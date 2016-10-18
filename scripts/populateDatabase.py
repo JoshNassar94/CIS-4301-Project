@@ -1,6 +1,6 @@
 import requests
 
-url = "http://www.cise.ufl.edu/~jnassar/test.php"
+url = "http://www.cise.ufl.edu/~jnassar/performQuery.php"
 print "Set the URL as: " + url + "."
 
 print "Creating table: Person (1/13)"
