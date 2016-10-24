@@ -1,0 +1,7 @@
+Insert into Facility values(0, 'US 441', 'Gainesville', 'FL', '32667', 'Lake Wauburg');
+Insert into Facility values(1, 'Gale Lemerand Dr', 'Gainesville', 'FL', '3261', 'OConnell Center');
+Insert into Facility values(2, 'Museum Rd', 'Gainesville', 'FL', '32603', 'Broward Recreation Center');
+Insert into Facility values(3, 'Hull Rd', 'Gainesville', 'FL', '32611', 'Southwest Recreation Center');
+Insert into Facility values(4, 'Hull Rd', 'Gainesville', 'FL', '32611', 'SWRC Fields');
+Insert into Facility values(5, 'Stadium Rd', 'Gainesville', 'FL', '32608', 'Florida Gym');
+Insert into Facility values(6, 'Bledsoe Dr', 'Gainesville', 'FL', '32611', 'SWRC Softball Complex');

@@ -1,0 +1,18 @@
+Total Body;
+Spin;
+Yoga;
+Hot Yoga;
+Hip-hop Fitness;
+Bootcamp;
+Zumba;
+Core;
+Kickboxing;
+Interval Training;
+Outdoor Yoga;
+Yogalates;
+Tai Chi;
+Step;
+Power Yoga;
+Ballet;
+iBurn;
+Recovery Yoga;

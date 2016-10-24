@@ -1,0 +1,13 @@
+Delete from table ClassRoster where ClassID>-1;
+Delete from table IntramuralTeamRoster where TeamID>-1;
+Delete from table IntramuralGame where GameID>-1;
+Delete from table Class where ClassID>-1;
+Delete from table EquipmentTransaction where TransactionID>-1;
+Delete from table Equipment where EquipmentID>-1;
+Delete from table CheckIn where CheckInID>-1;
+Delete from table Guest where GuestID>-1;
+Delete from table UfAffiliate where UFID>-1;
+Delete from table Acitvity where ActivityID>-1;
+Delete from table IntramuralTeam where TeamID>-1;
+Delete from table Facility where FacilityID>-1;
+Delete from table Person where PersonID>-1;
