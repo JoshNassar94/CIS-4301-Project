@@ -7,7 +7,7 @@ Delete from Equipment where EquipmentID>-1;
 Delete from CheckIn where CheckInID>-1;
 Delete from Guest where GuestID>-1;
 Delete from UfAffiliate where UFID>-1;
-Delete from Acitvity where ActivityID>-1;
+Delete from Activity where ActivityID>-1;
 Delete from IntramuralTeam where TeamID>-1;
 Delete from Facility where FacilityID>-1;
 Delete from Person where PersonID>-1;

@@ -28,7 +28,7 @@ SQL.write(query + "\n")
 query = "Delete from UfAffiliate where UFID>-1;"
 SQL.write(query + "\n")
 
-query = "Delete from Acitvity where ActivityID>-1;"
+query = "Delete from Activity where ActivityID>-1;"
 SQL.write(query + "\n")
 
 query = "Delete from IntramuralTeam where TeamID>-1;"
