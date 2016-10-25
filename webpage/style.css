@@ -1,0 +1,38 @@
+body, html{ height: 100%;}
+body {
+	background-color: #FFFFFF;
+}
+#home {
+	height: 55%;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFFFF;
+	background-size : 100% auto;
+	background-repeat: no-repeat;
+}
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 3rem;
+  background-color: #79C2F4;
+  text-align: center;
+}
+.header {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  padding: 3rem;
+  background-color: #79C2F4;
+  text-align: center;
+}
+#info {
+	background-color: #FFC942;
+	height: auto;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
