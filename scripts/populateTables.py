@@ -211,7 +211,7 @@ sportNames = list()
 
 with open("../data/classes.txt") as f:
     for line in f:
-        classNames.append(line.split(";'")[0])
+        classNames.append(line.split(";")[0])
 
 with open("../data/sports.txt") as f:
     for sport in f:
