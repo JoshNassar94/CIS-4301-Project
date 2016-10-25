@@ -169,35 +169,33 @@ with open("../data/sports.txt") as f:
         sport = sport.split(";")[0]
         numTeams = random.randrange(18, 30, 2)
         alreadyTeam = list()
-        if sport is "Softball":
+        if sport == "Softball":
             numPlayers = 10
-        elif sport is "Basketball":
+        elif sport == "Basketball":
             numPlayers = 5
-        elif sport is "Tennis":
+        elif sport == "Tennis":
             numPlayers = 1
-        elif sport is "Volleyball":
+        elif sport == "Volleyball":
             numPlayers = 6
-        elif sport is "Soccer":
+        elif sport == "Soccer":
             numPlayers = 6
-        elif sport is "Flag Football":
+        elif sport == "Flag Football":
             numPlayers = 6
         else:
             numPlayers = 0
-
-        for index in range(0, numTeams, 1):
+        
+	for index in range(0, numTeams, 1):
             teamID = str(teamIndex)
-            teamSizeMap[teamIndex] = numPlayers
             teamTypeMap[teamIndex] = sport
+            teamSizeMap[teamIndex] = numPlayers
             teamIndex += 1
             teamName = teamList[random.randrange(0, len(teamList))]
             while(teamName in alreadyTeam):
                 teamName = teamList[random.randrange(0, len(teamList))]
             alreadyTeam.append(teamName)
 
-            query = "Insert into IntramuralTeam(" + teamID +", '" + teamName +"', '" + sport + "', 0, 0);"
+            query = "Insert into IntramuralTeam values(" + teamID +", '" + teamName +"', '" + sport + "', 0, 0);"
             SQL.write(query + "\n")
-
-
 
 #Activity
 print "Activity, Class, IntramuralGame"
@@ -255,11 +253,11 @@ for index in range(0, 20000, 1):
                 ", " + team2Score + ", " + str(team1ID) + ", " + str(team2ID) + ");"
         SQL.write(query + "\n")
         if(team1Score > team2Score):
-            query1 = "Update IntramuralTeam set Wins=Wins+1 where TeamID=" + str(team1ID) + ");"
-            query2 = "Update IntramuralTeam set Losses=Losses+1 where TeamID=" + str(team2ID) + ");"
+            query1 = "Update IntramuralTeam set Wins=Wins+1 where TeamID=" + str(team1ID) + ";"
+            query2 = "Update IntramuralTeam set Losses=Losses+1 where TeamID=" + str(team2ID) + ";"
         else:
-            query1 = "Update IntramuralTeam set Wins=Wins+1 where TeamID=" + str(team2ID) + ");"
-            query2 = "Update IntramuralTeam set Losses=Losses+1 where TeamID=" + str(team1ID) + ");"
+            query1 = "Update IntramuralTeam set Wins=Wins+1 where TeamID=" + str(team2ID) + ";"
+            query2 = "Update IntramuralTeam set Losses=Losses+1 where TeamID=" + str(team1ID) + ";"
         SQL.write(query1 + "\n")
         SQL.write(query2 + "\n")
 
@@ -343,7 +341,7 @@ for index in range(0, 10000, 1):
             ", TO_DATE('" + year + "/" + month + "/" + day + " " + hour + ":" + minute + ":00', 'yyyy/mm/dd hh24:mi:ss'), '" \
             + type + "');"
     SQL.write(query + "\n")
-    query = "Update Equipment set status='" + type + "' where equipmentID=" + equipmentID + ";"
+    query = "Update Equipment set equipmentstatus='" + type + "' where equipmentID=" + equipmentID + ";"
     SQL.write(query + "\n")
 
 
@@ -358,17 +356,20 @@ sports = list()
 sportsPlayed[0] = sports
 for index in range(0, teamIndex, 1):
     for player in range(0, teamSizeMap[index], 1):
+        tmpSports = list()
         teamID = str(index)
         ufid = UFIDs[random.randrange(0, len(UFIDs))]
-        if(ufid in sportsPlayed):
-            while(teamTypeMap[index] in sportsPlayed[ufid]):
+        while(ufid in sportsPlayed):
+	    tmpSports = sportsPlayed[ufid]
+            if(teamTypeMap[index] in sportsPlayed[ufid]):
                 ufid = UFIDs[random.randrange(0, len(UFIDs))]
-        sports = sportsPlayed[ufid]
-        sports.append(teamTypeMap[index])
-        sportsPlayed[ufid] = sports
+	    else:
+	        break;
+        tmpSports.append(teamTypeMap[index])
+        sportsPlayed[ufid] = tmpSports
         ufidString = str(ufid)
 
-        query = "Insert into IntramuralTeamRoster values(" + teamID + ", " + ufidString + ")"
+        query = "Insert into IntramuralTeamRoster values(" + teamID + ", " + ufidString + ");"
         SQL.write(query + "\n")
 
 
