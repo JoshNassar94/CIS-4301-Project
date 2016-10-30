@@ -36,3 +36,43 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+.navbar-nav > li{
+  padding-left:80px;
+  padding-right:80px;
+  background-color: #ffcc00;
+  color: #777;
+}
+
+.navbar-custom {
+    background-color:#ffcc00;
+    color:#ffcc00;
+    border-radius:0;
+}
+
+.yourActivities {
+  float:left;
+  width: 48%;
+  height: 400px;
+  background-color: #0099ff;
+  text-align: center;
+}
+
+.yourActivities h2 {
+  color:orange;
+    text-align: center;
+}
+
+.activities {
+
+  float: right;
+    width: 48%;
+    height: 60px;
+  background-color: #0099ff;
+  text-align: center;
+}
+
+.activities h2 {
+  color:orange;
+    text-align: center;
+}
