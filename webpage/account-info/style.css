@@ -16,10 +16,28 @@ body {
   right: 0;
   top: 0;
   left: 0;
+  background-color: #79C2F4;
+  text-align: center;
+}
+.header .row {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
   padding: 3rem;
   background-color: #79C2F4;
   text-align: center;
 }
+.col-xs-2:not(:last-child) {
+    border-left: 4px solid #FFC942;
+}
+.col-xs-2:last-child {
+    border-right: 4px solid #FFC942;
+    border-left: 4px solid #FFC942;
+}
 .main {
-  padding-top: 15rem;
+  padding-top: 8rem;
+}
+.labels {
+  font-size: 17px;
 }
