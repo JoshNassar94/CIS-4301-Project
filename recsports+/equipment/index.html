@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta content="Equipment" name="description">
+    <meta content="DB Project" name="author">
+    <title>Recsports+ Equipment</title><!-- Latest compiled and minified CSS -->
+    <link href="../img/football.ico" rel="shortcut icon" type="image/x-icon">
+    <link href=
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    rel="stylesheet"><!-- jQuery JavaScript -->
+    <!--script src="https://code.jquery.com/jquery-1.11.3.min.js"></script-->
+
+    <script src="http://code.jquery.com/jquery-1.12.3.min.js" type=
+    "text/javascript">
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src=
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+    </script><!-- our JS -->
+
+    <script src="script.js" type="text/javascript">
+    </script><!-- our CSS -->
+    <link href="style.css" rel="stylesheet"><!-- Font Awesome Icons -->
+</head>
+<body>
+    <div class="header"></div>
+    <div class="container main">
+        <center>
+            <img alt="Recsports+" class="img-responsive images" height="auto"
+            src="../img/logo.png" width="40%">
+        </center>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="padding-top:4rem">
+          <center><h1>Equipment Ckeck-Out/Check-In</h1></center>
+            <form>
+                <div class="form-group">
+                    <label for="ufid">UFID:</label> <input class="form-control"
+                    id="ufid" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="eqid">Equipmet ID:</label> <input class="form-control"
+                    id="eqid" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="check">Type:</label>
+                    <input class="form-control" type="radio" name="check" value="Check-In">Check-In<br>
+                    <input class="form-control" type="radio" name="check" value="Check-Out">Check-Out<br>
+                </div>
+                <div class="form-group">
+                    <label for="act">Activity:</label>
+                    <select id="act" name="Activity">
+                        <option value=" " selected="selected">Select Activity</option>
+                        <option value="1">Class</option>
+                        <option value="2">Game</option>
+                    </select>
+                </div>
+                <button class="btn btn-default" type=
+                "submit">Submit</button>
+            </form>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>
