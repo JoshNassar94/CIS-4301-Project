@@ -16,6 +16,7 @@ while($r = oci_fetch_assoc($statement)) {
 if(count($rows) > 0){
   session_start();
   $_SESSION['userID'] = $ufid;
+  $_SESSION['password'] = $password;
   echo 1;
 }
 else{

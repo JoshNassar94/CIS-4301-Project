@@ -63,12 +63,12 @@
                 "auto" src="img/current-info.png" width="60%"><br>
                <!--  <br> -->
                 <!--<br> -->
-                <h3 class="labels">First Name:</h3>
-                <h3 class="labels">Last Name:</h3>
-                <h3 class="labels">Email:</h3>
-                <h3 class="labels">Phone Number:</h3>
-                <h3 class="labels">Password:</h3>
-                <h3 class="labels">Last Login:</h3>
+                <h3 class="labels" id="first">First Name:</h3>
+                <h3 class="labels" id="last">Last Name:</h3>
+                <h3 class="labels" id="email">Email:</h3>
+                <h3 class="labels" id="phone">Phone Number:</h3>
+                <h3 class="labels" id="password">Password:</h3>
+                <h3 class="labels" id="last-login">Last Login:</h3>
             </div>
             <div class="col-xs-6">
                 <img alt="Update Info" class="img-responsive images" height=
@@ -78,7 +78,7 @@
                 <form>
                     <div class="form-group">
                         <label for="currPW">Current Password</label>
-                        <input class="form-control" id="currPW" type="text">
+                        <input class="form-control" id="currPW" type="password">
                     </div>
                     <div class="form-group">
                         <label for="newEmail">New Email</label> <input class=
@@ -90,9 +90,10 @@
                     </div>
                     <div class="form-group">
                         <label for="newPW">New Password</label> <input class=
-                        "form-control" id="newPW" type="pwd">
-                    </div><button class="btn btn-primary" type=
-                    "submit">Update</button>
+                        "form-control" id="newPW" type="password">
+                    </div>
+		    <button class="btn btn-primary" type=
+                    "button" onclick="update(this.form);">Update</button>
                 </form>
             </div>
         </div>
