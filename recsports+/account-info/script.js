@@ -1,31 +1,42 @@
-/*function to mark selection in nav bar as active*/
-$(function() {
-  $('.nav li').click(function() {
-     $('.nav li').removeClass();
-     $(this).addClass('active');
-  });
-});
+$(document).ready(function() {
+  $.post("getInfo.php", {id: 0},
+    function(data){
+	if(data == -1){
+	  console.log("Not logged in");
+	  window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/";
+	}
+	else{
+	  data = (JSON.parse(data))[0];
+	  document.getElementById("first").innerHTML = "First Name: " + data['FIRSTNAME'];
+	  document.getElementById("last").innerHTML = "Last Name: " + data['LASTNAME'];
+	  document.getElementById("email").innerHTML = "Email: " + data['EMAIL'];
+	  document.getElementById("phone").innerHTML = "Phone Number: " + data['PHONENUMBER'];
+	  document.getElementById("password").innerHTML = "Password: " + data['PASSWORDHASH'];
 
-
-//Smooth scrolling
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $('a[href*="#"]:not([href="#"])').on('click', function(event) {
-
-    // Prevent default anchor click behavior
-    event.preventDefault();
-
-    // Store hash
-    var hash = this.hash;
-
-    // Using jQuery's animate() method to add smooth page scroll
-    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 800, function(){
-   
-      // Add hash (#) to URL when done scrolling (default click behavior)
-      window.location.hash = hash;
+	}
     });
-  });
+
+    
 });
+
+
+function update(form) {
+	var currPass = $("#currPW").val();
+	var newEmail = $("#newEmail").val();
+	var newPhone = $("#newPhone").val();
+	var newPass = $("#newPW").val();
+	$.post("updateInfo.php", {currPW: currPass, email: newEmail, phone: newPhone, newPW: newPass},
+		function(data) {
+			if(data == -1){
+			  alert("Incorrect password!");
+			  return false;
+			}
+			else{
+			  console.log(data);
+			  alert("Updated info!");
+			  location.reload();
+			}
+	});
+  return true;
+}
+
