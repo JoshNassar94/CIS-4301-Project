@@ -6,7 +6,7 @@ $connection_string = '//oracle.cise.ufl.edu/orcl');
 $ufid= $_POST['ufid'];
 $password = $_POST['password1'];
 
-$statement = oci_parse($connection, "SELECT * FROM UfAffiliate where ufid='$ufid' and passwordhash='$password'");
+$statement = oci_parse($connection, "SELECT affiliation FROM UfAffiliate where ufid='$ufid' and passwordhash='$password'");
 oci_execute($statement);
 $rows = array();
 while($r = oci_fetch_assoc($statement)) {
@@ -17,7 +17,12 @@ if(count($rows) > 0){
   session_start();
   $_SESSION['userID'] = $ufid;
   $_SESSION['password'] = $password;
-  echo 1;
+  if($rows[0]['AFFILIATION'] == 'E'){
+    echo 2;
+  }
+  else{
+    echo 1;
+  }
 }
 else{
   echo 0;

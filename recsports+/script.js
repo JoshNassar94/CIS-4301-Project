@@ -6,6 +6,9 @@ function login(form) {
 			if(data == 1){
 				window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/welcome";
 			}
+			else if(data == 2){
+				window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/employee-main";
+			}
 			else{
 				alert("Incorrect UFID or password!");
 				return false;
