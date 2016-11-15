@@ -56,35 +56,34 @@
             </div>
         </div>
     </nav>
-
-    <div class="container main">
-        <div class="row">
-            <div class="col-sm-3 no-float coming-up">
-                <h1 class="blue-box-title">Coming Up</h1>
-		<div id="coming-up-div"></div>
+    <nav class="navbar "style="padding-top: 5rem;">
+        <div class="container">
+            <h1 class="main-title">Stats</h1>
+            <div class="navbar-header">
+                <button aria-controls="navbar" aria-expanded="false" class=
+                "navbar-toggle collapsed" data-target="#navbar" data-toggle=
+                "collapse" type="button"><span class="sr-only">Toggle
+                navigation</span> <span class="icon-bar"></span> <span class=
+                "icon-bar"></span> <span class="icon-bar"></span></button>
             </div>
-
-            <div class="col-sm-6 no-float spotlight" style="padding-top:4rem">
-                <h1 class="spotlight-title">Gator Spotlight</h1>
-                <br>
-                <center><img src="img/eddie.jpg" alt="Eddie Pineiro" class="img-circle" width="50%"></center>
-                <br><br>
-                <h3>
-                    <ul>
-                        <li>A standout soccer player at Miami Sunset Senior High School</li>
-                        <li>Attended ASA Community College in Miami prior to enrolling at Florida on a football scholarship</li>
-                        <li>Only played in seven games in his high school career, primarily handling kickoff duties and extra points for his high school team</li>
-                        <li>Has worked with kicking instructor Brandon Kornblue</li>
-                        <li>Parents are of Cuban and Nicaraguan descent</li>
-                    </ul>
-                </h3>
-            </div>
-
-            <div class="col-sm-3 no-float results">
-                <h1 class="blue-box-title">Recent Intramural Results</h1>
-		<div id="results-div"></div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="header-option" onClick="displayFacilities();">Facilities</a>
+                    </li>
+                    <li>
+                        <a class="header-option" onClick="displayIntramurals();">Intramurals</a>
+                    </li>
+                    <li>
+                        <a class="header-option" onClick="displayClasses();">Classes</a>
+                    </li>
+                    <li>
+                        <a class="header-option" onClick="displayEquipment();">Equipment</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
+    </nav>
+    <div class="container" id="data-div"></div>
 </body>
 </html>

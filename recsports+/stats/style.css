@@ -1,0 +1,13 @@
+body, html{ height: 100%;}
+body {
+  background-color: #FFFFFF;
+}
+.main-title {
+  color: #FFC942;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+.header-option {
+  cursor:pointer;
+}
