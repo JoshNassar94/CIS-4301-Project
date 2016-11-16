@@ -47,7 +47,6 @@ $(document).ready(function() {
     function(data){
     	var htmlString = "";
 	data = (JSON.parse(data));
-	console.log(data);
 	for(var i=0; i < data.length; i++){
 	  htmlString += "<h3>"+data[i]["CNAME"]+"</h3>";
 	  htmlString += "<p>Attended "+data[i]["COUNT"]+" times</p>";
@@ -56,3 +55,12 @@ $(document).ready(function() {
 	document.getElementById("favorite-classes-div").innerHTML = htmlString;
     });
 });
+
+function logout() {
+  $.post("../logout.php",
+    function(data){
+      window.location.href = "http://cise.ufl.edu/~jnassar/recsports+";
+  });
+  return true;
+}
+
