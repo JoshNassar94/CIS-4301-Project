@@ -15,7 +15,7 @@ select count(*) from equipmenttransaction where transactiontype = 'I';
 //number of unique check in days
 select count(*) from (select transactiondate from equipmenttransaction where transactiontype = 'I' group by transactiondate);
 
-3.) amount of times each time has won
+3.) ratio of each teams win/loss
 
 select t, (count(*) + (select count(*) from intramuralgame where team2id = t 
 and team1score < team2score))/((select count(*) from intramuralgame where team2id = t and team2score < team1score) + 
