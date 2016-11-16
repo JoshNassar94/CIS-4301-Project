@@ -17,6 +17,8 @@ select count(*) from (select transactiondate from equipmenttransaction where tra
 
 3.) amount of times each time has won
 
-select t, (count(*) + (select count(*) from intramuralgame where team2id = t and team1score < team2score)) win1 
-from (select distinct teamid t from intramuralteam join intramuralgame on teamid = team1id or teamid = team2id), 
+select t, (count(*) + (select count(*) from intramuralgame where team2id = t 
+and team1score < team2score))/((select count(*) from intramuralgame where team2id = t and team2score < team1score) + 
+(select count(*) from intramuralgame where team1id = t and team2score > team1score)) win1 from 
+(select distinct teamid t from intramuralteam join intramuralgame on teamid = team1id or teamid = team2id), 
 intramuralgame where team1id = t and team1score > team2score group by t;
