@@ -1,0 +1,22 @@
+1.) Percentage of students playing each sport (not exact query specified)
+
+select sporttype, count(*)/(select count(*) from IntramuralTeamRoster inner join
+ UfAffiliate on IntramuralTeamRoster.UfAffiliate  = UfAffiliate.ufid) Percentage 
+from (select * from IntramuralTeamRoster inner join UfAffiliate on 
+IntramuralTeamRoster.UfAffiliate  = UfAffiliate.ufid) x join IntramuralTeam on IntramuralTeam.TeamID = x.TeamID group by sporttype;
+
+2.) getting number of checkouts per day
+
+for some reason I can't divide these two in a single query
+
+//number of checkin
+select count(*) from equipmenttransaction where transactiontype = 'I';
+
+//number of unique check in days
+select count(*) from (select transactiondate from equipmenttransaction where transactiontype = 'I' group by transactiondate);
+
+3.) amount of times each time has won
+
+select t, (count(*) + (select count(*) from intramuralgame where team2id = t and team1score < team2score)) win1 
+from (select distinct teamid t from intramuralteam join intramuralgame on teamid = team1id or teamid = team2id), 
+intramuralgame where team1id = t and team1score > team2score group by t;
