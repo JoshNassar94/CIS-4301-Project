@@ -11,6 +11,19 @@ if($ufid == '' || $equipID == '' || $quality == ''){
   return;
 }
 
+$query = "select equipmentstatus from equipment
+		where equipmentid=$equipID";
+$statement = oci_parse($connection, $query); 
+oci_execute($statement);
+$rows = array();
+while($r = oci_fetch_assoc($statement)) {
+  $rows[] = $r;
+}
+if($rows[0]['EQUIPMENTSTATUS'] == 'I'){
+  echo(3);
+  return;
+}
+
 $query = "select transactionid from (select transactionid from equipmenttransaction 
 		order by transactionid desc)
 		where rownum <= 1";
@@ -34,14 +47,13 @@ if(count($rows) > 0){
   $personid = $rows[0]['PERSONID'];
   
   $query = "insert into equipmenttransaction values
-  		($transactionid, $equipID, $personid, CURRENT_TIMESTAMP, 'O')";
+  		($transactionid, $equipID, $personid, CURRENT_TIMESTAMP, 'I')";
   $statement = oci_parse($connection, $query); 
   oci_execute($statement);
 
   $query = "update equipment set equipmentcondition='$quality',
-  		equipmentstatus='O'
+  		equipmentstatus='I'
 		where equipmentid=$equipID";
-  echo($query);
   $statement = oci_parse($connection, $query); 
   oci_execute($statement);
   echo(1);
@@ -53,3 +65,6 @@ else{
 oci_free_statement($statement);
 oci_close($connection);
 ?>
+
+
+

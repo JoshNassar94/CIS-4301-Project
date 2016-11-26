@@ -14,12 +14,10 @@ function checkin() {
 	var password1 = $("#password").val();
 	var elem = document.getElementById("loc");
 	var loc = elem.options[elem.selectedIndex].innerHTML;
-	var htmlString = "";
 	$.post("./checkin.php", {ufid: ufid, password: password1, loc: loc},
 	  function(data){
 	    console.log(data);
 	    if(data == 1){
-	      //success
 	      alert("Checked in!");
 	      window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/employee-main";
 	    }
