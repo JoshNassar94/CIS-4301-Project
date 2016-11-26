@@ -195,6 +195,8 @@ function displayIntramurals() {
 	document.getElementById("dropdown-div-2").style.display = "none";
 	document.getElementById("dropdown-div-3").style.display = "none";
 	document.getElementById("dropdown-div-4").style.display = "none";
+	document.getElementById("roster-div").style.display = "none";
+	document.getElementById("record-div").style.display = "none";
 	var htmlString = "";
 	$.post("./getSportTypes.php",
 	  function(data){
@@ -359,6 +361,41 @@ function displayClassRoster(){
 
 function displayEquipment() {
 	console.log("Display equipment");
-	document.getElementById("data-div-1").innerHTML = "<h1>Equipment stuff</h1>";
+	document.getElementById("data-div-1").style.display = "block";
+	document.getElementById("data-div-1").innerHTML = "<center><img src='img/loading.gif' width='10%'></center>";
+	document.getElementById("data-div-2").style.display = "none";
+	document.getElementById("data-div-3").style.display = "none";
+	document.getElementById("data-div-4").style.display = "none";
+	document.getElementById("dropdown-div-2").style.display = "none";
+	document.getElementById("dropdown-div-3").style.display = "none";
+	document.getElementById("dropdown-div-4").style.display = "none";
+	document.getElementById("roster-div").style.display = "none";
+	document.getElementById("record-div").style.display = "none";
+	var htmlString = "<h3>Average checkouts per day: ";
+	$.post("./getAverageCheckouts.php",
+	  function(data){
+	    data = JSON.parse(data);
+            var avg = data[0]["AVERAGE"];
+	    htmlString += avg+"</h3>";
+	    document.getElementById("data-div-1").innerHTML = htmlString;
+	    document.getElementById("data-div-1").style.display = "block";
+        });
+	var htmlString2 = "<h3>Average Checkouts per Day per Equipment</h3>";
+	htmlString2 += "<table border='1'>";
+	$.post("./getAverageCheckoutsPerEquipment.php",
+	  function(data){
+	    data = JSON.parse(data);
+	    for(var i=0; i<data.length; i++){
+              var avg = data[i]["AVERAGE"];
+	      var type = data[i]["ETYPE"];
+	      htmlString2 += "<tr><td>"+type+"</td>";
+	      htmlString2 += "<td>"+avg+"</td></tr>";
+	    }
+	    htmlString += "</table>";
+	    document.getElementById("data-div-1").innerHTML = htmlString;
+	    document.getElementById("data-div-1").style.display = "block";
+	    document.getElementById("data-div-2").innerHTML = htmlString2;
+	    document.getElementById("data-div-2").style.display = "block";
+        });
  	return true;
 }
