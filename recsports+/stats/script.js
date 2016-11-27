@@ -17,10 +17,46 @@ function logout() {
   return true;
 }
 
+function convertMonth(month) {
+	if(month == 1)
+	  return "JAN";
+	else if(month == 2)
+	  return "FEB";
+	else if(month == 3)
+	  return "MAR";
+	else if(month == 4)
+	  return "APR";
+	else if(month == 5)
+	  return "MAY";
+	else if(month == 6)
+	  return "JUN";
+	else if(month == 7)
+	  return "JUL";
+	else if(month == 8)
+	  return "AUG";
+	else if(month == 9)
+	  return "SEP";
+	else if(month == 10)
+	  return "OCT";
+	else if(month == 11)
+	  return "NOV";
+	else if(month == 12)
+	  return "DEC";
+}
+
+function getCheckinsPerHour(data, hour) {
+  for(var i=0; i<data.length; i++) {
+    if(data[i]["HOUR"] == hour){
+      return parseInt(data[i]["COUNT"]);
+    }
+  }
+  return 0;
+}
+
 
 function displayFacilities() {
 	document.getElementById("data-div-1").style.display = "block";
-	document.getElementById("data-div-2").style.display = "block";
+	document.getElementById("data-div-2").style.display = "none";
 	document.getElementById("data-div-3").style.display = "none";
 	document.getElementById("data-div-4").style.display = "none";
 	document.getElementById("dropdown-div").style.display = "none";
@@ -33,160 +69,60 @@ function displayFacilities() {
 	$.post("./getFacilityData.php",
 	  function(data){
 	    data = JSON.parse(data);
-          var chart = new CanvasJS.Chart("data-div-1",{
-	    animationEnabled: true,
-	    title: {text: "Check-Ins per Facility by Month"},
-	    axisY:{
-	      maximum: 1100,
-	      minimum: 900,
-	      title: "Check-Ins"
-	    },
-	    axisX:{
-	      title: "Month"
-	    },
-	    height: 400,
-	    data: [
-	    {
-	      type: "line",
-	      name: data[0]["FACILITYNAME"],
-	      showInLegend: true,
-	      dataPoints: [
-	        {x: 1, y: parseInt(data[0]["COUNT"])},
-	        {x: 2, y: parseInt(data[1]["COUNT"])},
-	        {x: 3, y: parseInt(data[2]["COUNT"])},
-	        {x: 4, y: parseInt(data[3]["COUNT"])},
-	        {x: 5, y: parseInt(data[4]["COUNT"])},
-	        {x: 6, y: parseInt(data[5]["COUNT"])},
-	        {x: 7, y: parseInt(data[6]["COUNT"])},
-	        {x: 8, y: parseInt(data[7]["COUNT"])},
-	        {x: 9, y: parseInt(data[8]["COUNT"])},
-	        {x: 10, y: parseInt(data[9]["COUNT"])},
-	        {x: 11, y: parseInt(data[10]["COUNT"])},
-	        {x: 12, y: parseInt(data[11]["COUNT"])}
-	      ]
-	    },
-	    {
-	      type: "line",
-	      name: data[12]["FACILITYNAME"],
-	      showInLegend: true,
-	      dataPoints: [
-	        {x: 1, y: parseInt(data[12]["COUNT"])},
-	        {x: 2, y: parseInt(data[13]["COUNT"])},
-	        {x: 3, y: parseInt(data[14]["COUNT"])},
-	        {x: 4, y: parseInt(data[15]["COUNT"])},
-	        {x: 5, y: parseInt(data[16]["COUNT"])},
-	        {x: 6, y: parseInt(data[17]["COUNT"])},
-	        {x: 7, y: parseInt(data[18]["COUNT"])},
-	        {x: 8, y: parseInt(data[19]["COUNT"])},
-	        {x: 9, y: parseInt(data[20]["COUNT"])},
-	        {x: 10, y: parseInt(data[21]["COUNT"])},
-	        {x: 11, y: parseInt(data[22]["COUNT"])},
-	        {x: 12, y: parseInt(data[23]["COUNT"])}
-	      ]
-	    },
-	    {
-	      type: "line",
-	      name: data[24]["FACILITYNAME"],
-	      showInLegend: true,
-	      dataPoints: [
-	        {x: 1, y: parseInt(data[24]["COUNT"])},
-	        {x: 2, y: parseInt(data[25]["COUNT"])},
-	        {x: 3, y: parseInt(data[26]["COUNT"])},
-	        {x: 4, y: parseInt(data[27]["COUNT"])},
-	        {x: 5, y: parseInt(data[28]["COUNT"])},
-	        {x: 6, y: parseInt(data[29]["COUNT"])},
-	        {x: 7, y: parseInt(data[30]["COUNT"])},
-	        {x: 8, y: parseInt(data[31]["COUNT"])},
-	        {x: 9, y: parseInt(data[32]["COUNT"])},
-	        {x: 10, y: parseInt(data[33]["COUNT"])},
-	        {x: 11, y: parseInt(data[34]["COUNT"])},
-	        {x: 12, y: parseInt(data[35]["COUNT"])}
-	      ]
-	    },
-	    {
-	      type: "line",
-	      name: data[36]["FACILITYNAME"],
-	      showInLegend: true,
-	      dataPoints: [
-	        {x: 1, y: parseInt(data[36]["COUNT"])},
-	        {x: 2, y: parseInt(data[37]["COUNT"])},
-	        {x: 3, y: parseInt(data[38]["COUNT"])},
-	        {x: 4, y: parseInt(data[39]["COUNT"])},
-	        {x: 5, y: parseInt(data[40]["COUNT"])},
-	        {x: 6, y: parseInt(data[41]["COUNT"])},
-	        {x: 7, y: parseInt(data[42]["COUNT"])},
-	        {x: 8, y: parseInt(data[43]["COUNT"])},
-	        {x: 9, y: parseInt(data[44]["COUNT"])},
-	        {x: 10, y: parseInt(data[45]["COUNT"])},
-	        {x: 11, y: parseInt(data[46]["COUNT"])},
-	        {x: 12, y: parseInt(data[47]["COUNT"])}
-	      ]
-	    },
-	    {
-	      type: "line",
-	      name: data[48]["FACILITYNAME"],
-	      showInLegend: true,
-	      dataPoints: [
-	        {x: 1, y: parseInt(data[48]["COUNT"])},
-	        {x: 2, y: parseInt(data[49]["COUNT"])},
-	        {x: 3, y: parseInt(data[50]["COUNT"])},
-	        {x: 4, y: parseInt(data[51]["COUNT"])},
-	        {x: 5, y: parseInt(data[52]["COUNT"])},
-	        {x: 6, y: parseInt(data[53]["COUNT"])},
-	        {x: 7, y: parseInt(data[54]["COUNT"])},
-	        {x: 8, y: parseInt(data[55]["COUNT"])},
-	        {x: 9, y: parseInt(data[56]["COUNT"])},
-	        {x: 10, y: parseInt(data[57]["COUNT"])},
-	        {x: 11, y: parseInt(data[58]["COUNT"])},
-	        {x: 12, y: parseInt(data[59]["COUNT"])}
-	      ]
+	    htmlString = "<h3>Check-Ins per Facility per Month</h3>";
+	    htmlString += "<table border='1'>";
+	    htmlString += "<tr style='font-weight:bold'><td>Facility</td><td>Month</td><td>Checkins</td></tr>";
+	    for(var i=0; i<data.length; i++){
+	      var facility = data[i]["FACILITYNAME"];
+	      var month = convertMonth(data[i]["MONTH"]);
+	      var checkins = data[i]["COUNT"];
+	      htmlString += "<tr><td>  "+facility+"  </td>";
+	      htmlString += "<td>  "+month+"  </td>";
+	      htmlString += "<td>  "+checkins+"  </td></tr>";
 	    }
-	    ]
+	    htmlString += "</table>";
+	    document.getElementById("data-div-1").innerHTML = htmlString;
 	  });
-	  chart.render();
-	  });
-
-
+	
+	
 	$.post("./getHoursData.php",
 	  function(data){
 	    data = JSON.parse(data);
+	    console.log(data);
           var chart = new CanvasJS.Chart("data-div-2",{
 	    animationEnabled: true,
 	    title: {text: "Check-Ins per Hour"},
 	    axisY:{
-	      maximum: 2500,
-	      minimum: 3500,
 	      title: "Check-Ins"
 	    },
 	    axisX:{
 	      title: "Hour"
 	    },
-	    height: 400,
 	    data: [
 	    {
 	      type: "column",
 	      indexLabel: "{y}",
-	      name: data[0]["HOUR"],
 	      dataPoints: [
-	        {x: 7, y: parseInt(data[0]["COUNT"])},
-	        {x: 8, y: parseInt(data[1]["COUNT"])},
-	        {x: 9, y: parseInt(data[2]["COUNT"])},
-	        {x: 10, y: parseInt(data[3]["COUNT"])},
-	        {x: 11, y: parseInt(data[4]["COUNT"])},
-	        {x: 12, y: parseInt(data[5]["COUNT"])},
-	        {x: 13, y: parseInt(data[6]["COUNT"])},
-	        {x: 14, y: parseInt(data[7]["COUNT"])},
-	        {x: 15, y: parseInt(data[8]["COUNT"])},
-	        {x: 16, y: parseInt(data[9]["COUNT"])},
-	        {x: 17, y: parseInt(data[10]["COUNT"])},
-	        {x: 18, y: parseInt(data[11]["COUNT"])},
-	        {x: 19, y: parseInt(data[12]["COUNT"])},
-	        {x: 20, y: parseInt(data[13]["COUNT"])},
-	        {x: 21, y: parseInt(data[14]["COUNT"])}
+	        {x: 7, y: getCheckinsPerHour(data, "07")},
+	        {x: 8, y: getCheckinsPerHour(data, "08")},
+	        {x: 9, y: getCheckinsPerHour(data, "09")},
+	        {x: 10, y: getCheckinsPerHour(data, "10")},
+	        {x: 11, y: getCheckinsPerHour(data, "11")},
+	        {x: 12, y: getCheckinsPerHour(data, "12")},
+	        {x: 13, y: getCheckinsPerHour(data, "13")},
+	        {x: 14, y: getCheckinsPerHour(data, "14")},
+	        {x: 15, y: getCheckinsPerHour(data, "15")},
+	        {x: 16, y: getCheckinsPerHour(data, "16")},
+	        {x: 17, y: getCheckinsPerHour(data, "17")},
+	        {x: 18, y: getCheckinsPerHour(data, "18")},
+	        {x: 19, y: getCheckinsPerHour(data, "19")},
+	        {x: 20, y: getCheckinsPerHour(data, "20")},
+	        {x: 21, y: getCheckinsPerHour(data, "21")}
 	      ]
 	    }
 	    ]
 	  });
+	  document.getElementById("data-div-2").style.display = "block";
 	  chart.render();
 	  });
 
