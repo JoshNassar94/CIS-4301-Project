@@ -28,3 +28,8 @@ intramuralgame where team1id = t and team1score > team2score group by t;
 5.)Query number of guest check-ins per month for each facility
 
 select facility.facilityid, TO_CHAR(checkin.checkindate, 'YYYY-MM') AS month, count(checkin.personid) from checkin, guest, facility where guest.personid = checkin.personid and checkin.facilityid = facility.facilityid group by facility.facilityid, TO_CHAR(checkin.checkindate, 'YYYY-MM') order by facility.facilityid, month;
+
+6.) Percentage of students who play 1, 2, 3, etc different sports
+
+
+select count1sport/(select count(ufid) from ufaffiliate) sport1percentage, count2sport/(select count(ufid) from ufaffiliate) sport2percentage from (select * from (select count(ufaffiliate) count1sport  from  (select ufaffiliate, count(sporttype) from intramuralteamroster, intramuralteam where intramuralteamroster.teamid = intramuralteam.teamid group by ufaffiliate having count(sporttype) = 1)) onesport, (select count(ufaffiliate) count2sport  from  (select ufaffiliate, count(sporttype) from intramuralteamroster, intramuralteam where intramuralteamroster.teamid = intramuralteam.teamid group by ufaffiliate having count(sporttype) = 2)) twosport);
