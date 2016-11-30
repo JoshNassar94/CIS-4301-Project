@@ -22,3 +22,9 @@ and team1score < team2score))/((select count(*) from intramuralgame where team2i
 (select count(*) from intramuralgame where team1id = t and team2score > team1score)) win1 from 
 (select distinct teamid t from intramuralteam join intramuralgame on teamid = team1id or teamid = team2id), 
 intramuralgame where team1id = t and team1score > team2score group by t;
+
+4.) average class attendance
+
+5.)Query number of guest check-ins per month for each facility
+
+select facility.facilityid, TO_CHAR(checkin.checkindate, 'YYYY-MM') AS month, count(checkin.personid) from checkin, guest, facility where guest.personid = checkin.personid and checkin.facilityid = facility.facilityid group by facility.facilityid, TO_CHAR(checkin.checkindate, 'YYYY-MM') order by facility.facilityid, month;
