@@ -8,3 +8,12 @@ $(document).ready(function() {
 	}
     });
 });
+
+function logout() {
+  $.post("../logout.php",
+    function(data){
+      window.location.href = "http://cise.ufl.edu/~jnassar/recsports+";
+  });
+  return true;
+}
+

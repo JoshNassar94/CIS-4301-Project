@@ -1,0 +1,35 @@
+1.) Percentage of students playing each sport (not exact query specified)
+
+select sporttype, count(*)/(select count(*) from IntramuralTeamRoster inner join
+ UfAffiliate on IntramuralTeamRoster.UfAffiliate  = UfAffiliate.ufid) Percentage 
+from (select * from IntramuralTeamRoster inner join UfAffiliate on 
+IntramuralTeamRoster.UfAffiliate  = UfAffiliate.ufid) x join IntramuralTeam on IntramuralTeam.TeamID = x.TeamID group by sporttype;
+
+2.) getting number of checkouts per day
+
+for some reason I can't divide these two in a single query
+
+//number of checkin
+select count(*) from equipmenttransaction where transactiontype = 'I';
+
+//number of unique check in days
+select count(*) from (select transactiondate from equipmenttransaction where transactiontype = 'I' group by transactiondate);
+
+3.) ratio of each teams win/loss
+
+select t, (count(*) + (select count(*) from intramuralgame where team2id = t 
+and team1score < team2score))/((select count(*) from intramuralgame where team2id = t and team2score < team1score) + 
+(select count(*) from intramuralgame where team1id = t and team2score > team1score)) win1 from 
+(select distinct teamid t from intramuralteam join intramuralgame on teamid = team1id or teamid = team2id), 
+intramuralgame where team1id = t and team1score > team2score group by t;
+
+4.) average class attendance
+
+5.)Query number of guest check-ins per month for each facility
+
+select facility.facilityid, TO_CHAR(checkin.checkindate, 'YYYY-MM') AS month, count(checkin.personid) from checkin, guest, facility where guest.personid = checkin.personid and checkin.facilityid = facility.facilityid group by facility.facilityid, TO_CHAR(checkin.checkindate, 'YYYY-MM') order by facility.facilityid, month;
+
+6.) Percentage of students who play 1, 2, 3, etc different sports
+
+
+select count1sport/(select count(ufid) from ufaffiliate) sport1percentage, count2sport/(select count(ufid) from ufaffiliate) sport2percentage from (select * from (select count(ufaffiliate) count1sport  from  (select ufaffiliate, count(sporttype) from intramuralteamroster, intramuralteam where intramuralteamroster.teamid = intramuralteam.teamid group by ufaffiliate having count(sporttype) = 1)) onesport, (select count(ufaffiliate) count2sport  from  (select ufaffiliate, count(sporttype) from intramuralteamroster, intramuralteam where intramuralteamroster.teamid = intramuralteam.teamid group by ufaffiliate having count(sporttype) = 2)) twosport);
