@@ -3,7 +3,6 @@ $(document).ready(function() {
   $.post("getInfo.php", {id: 0},
     function(data){
 	if(data == -1){
-	  console.log("Not logged in");
 	  window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/";
 	}
 	else{
@@ -34,7 +33,6 @@ function update(form) {
 			  return false;
 			}
 			else{
-			  console.log(data);
 			  alert("Updated info!");
 			  location.reload();
 			}

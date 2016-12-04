@@ -1,9 +1,7 @@
 $(document).ready(function() {
   $.post("../isLoggedIn.php", {id: 0},
     function(data){
-      console.log("Logged in as: "+data);
 	if(data == -1){
-	  console.log("Not logged in");
 	  window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/";
 	}
     });
@@ -60,7 +58,6 @@ function checkout(){
 	  quality = quality.charAt(0);
 	$.post("./checkout.php", {ufid: ufid, equipID: equipID, quality: quality},
 	  function(data){
-	  console.log(data);
 	    if(data == 1){
 	      alert("Checked out!");
 	      window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/employee-main";

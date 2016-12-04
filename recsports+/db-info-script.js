@@ -1,7 +1,6 @@
 $(document).ready(function() {
   $.post("./db-info.php",
     function(data){
-      console.log("Logged in as: "+data);
       data = JSON.parse(data);
       var htmlString = "<h1>Tuples per table</h1>";
       htmlString += "<p>Activity: "+data[0]["ACTIVITYCOUNT"]+"</p>";

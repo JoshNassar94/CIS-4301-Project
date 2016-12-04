@@ -1,9 +1,7 @@
 $(document).ready(function() {
   $.post("../isLoggedIn.php", {id: 0},
     function(data){
-      console.log("Logged in as: "+data);
 		if(data == -1){
-		  console.log("Not logged in");
 		  window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/";
 		}
     });
@@ -12,13 +10,15 @@ $(document).ready(function() {
 
 function displayFacilities() {
 	document.getElementById("data-div-1").style.display = "block";
-	document.getElementById("data-div-2").style.display = "block";
+	document.getElementById("data-div-2").style.display = "none";
 	document.getElementById("data-div-3").style.display = "none";
 	document.getElementById("data-div-4").style.display = "none";
 	document.getElementById("dropdown-div").style.display = "none";
 	document.getElementById("dropdown-div-2").style.display = "none";
 	document.getElementById("dropdown-div-3").style.display = "none";
 	document.getElementById("dropdown-div-4").style.display = "none";
+	document.getElementById("data-div-5").style.display = "none";
+	document.getElementById("data-div-6").style.display = "none";
 	document.getElementById("record-div").style.display = "none";
 	document.getElementById("roster-div").style.display = "none";
 	document.getElementById("data-div-1").innerHTML = "<center><img src='img/loading.gif' width='10%'></center>";
@@ -142,7 +142,6 @@ function displayFacilities() {
 	$.post("./getHoursData.php",
 	  function(data){
 	    data = JSON.parse(data);
-	    console.log(data);
           var chart = new CanvasJS.Chart("data-div-2",{
 	    animationEnabled: true,
 	    title: {text: "Check-Ins per Hour"},
@@ -180,6 +179,125 @@ function displayFacilities() {
 	    }
 	    ]
 	  });
+	  document.getElementById("data-div-2").style.display = "block";
+	  chart.render();
+	  });
+
+
+	$.post("./guest-data.php",
+	  function(data){
+	    data = JSON.parse(data);
+          var chart = new CanvasJS.Chart("data-div-3",{
+	    animationEnabled: true,
+	    title: {text: "Guest Check-Ins per Facility by Month"},
+	    axisY:{
+	      maximum: 110,
+	      minimum: 50,
+	      title: "Guest Check-Ins"
+	    },
+	    axisX:{
+	      title: "Month"
+	    },
+	    height: 400,
+	    data: [
+	    {
+	      type: "line",
+	      name: data[0]["FACILITYNAME"],
+	      showInLegend: true,
+	      dataPoints: [
+	        {x: 1, y: parseInt(data[0]["COUNT"])},
+	        {x: 2, y: parseInt(data[1]["COUNT"])},
+	        {x: 3, y: parseInt(data[2]["COUNT"])},
+	        {x: 4, y: parseInt(data[3]["COUNT"])},
+	        {x: 5, y: parseInt(data[4]["COUNT"])},
+	        {x: 6, y: parseInt(data[5]["COUNT"])},
+	        {x: 7, y: parseInt(data[6]["COUNT"])},
+	        {x: 8, y: parseInt(data[7]["COUNT"])},
+	        {x: 9, y: parseInt(data[8]["COUNT"])},
+	        {x: 10, y: parseInt(data[9]["COUNT"])},
+	        {x: 11, y: parseInt(data[10]["COUNT"])},
+	        {x: 12, y: parseInt(data[11]["COUNT"])}
+	      ]
+	    },
+	    {
+	      type: "line",
+	      name: data[12]["FACILITYNAME"],
+	      showInLegend: true,
+	      dataPoints: [
+	        {x: 1, y: parseInt(data[12]["COUNT"])},
+	        {x: 2, y: parseInt(data[13]["COUNT"])},
+	        {x: 3, y: parseInt(data[14]["COUNT"])},
+	        {x: 4, y: parseInt(data[15]["COUNT"])},
+	        {x: 5, y: parseInt(data[16]["COUNT"])},
+	        {x: 6, y: parseInt(data[17]["COUNT"])},
+	        {x: 7, y: parseInt(data[18]["COUNT"])},
+	        {x: 8, y: parseInt(data[19]["COUNT"])},
+	        {x: 9, y: parseInt(data[20]["COUNT"])},
+	        {x: 10, y: parseInt(data[21]["COUNT"])},
+	        {x: 11, y: parseInt(data[22]["COUNT"])},
+	        {x: 12, y: parseInt(data[23]["COUNT"])}
+	      ]
+	    },
+	    {
+	      type: "line",
+	      name: data[24]["FACILITYNAME"],
+	      showInLegend: true,
+	      dataPoints: [
+	        {x: 1, y: parseInt(data[24]["COUNT"])},
+	        {x: 2, y: parseInt(data[25]["COUNT"])},
+	        {x: 3, y: parseInt(data[26]["COUNT"])},
+	        {x: 4, y: parseInt(data[27]["COUNT"])},
+	        {x: 5, y: parseInt(data[28]["COUNT"])},
+	        {x: 6, y: parseInt(data[29]["COUNT"])},
+	        {x: 7, y: parseInt(data[30]["COUNT"])},
+	        {x: 8, y: parseInt(data[31]["COUNT"])},
+	        {x: 9, y: parseInt(data[32]["COUNT"])},
+	        {x: 10, y: parseInt(data[33]["COUNT"])},
+	        {x: 11, y: parseInt(data[34]["COUNT"])},
+	        {x: 12, y: parseInt(data[35]["COUNT"])}
+	      ]
+	    },
+	    {
+	      type: "line",
+	      name: data[36]["FACILITYNAME"],
+	      showInLegend: true,
+	      dataPoints: [
+	        {x: 1, y: parseInt(data[36]["COUNT"])},
+	        {x: 2, y: parseInt(data[37]["COUNT"])},
+	        {x: 3, y: parseInt(data[38]["COUNT"])},
+	        {x: 4, y: parseInt(data[39]["COUNT"])},
+	        {x: 5, y: parseInt(data[40]["COUNT"])},
+	        {x: 6, y: parseInt(data[41]["COUNT"])},
+	        {x: 7, y: parseInt(data[42]["COUNT"])},
+	        {x: 8, y: parseInt(data[43]["COUNT"])},
+	        {x: 9, y: parseInt(data[44]["COUNT"])},
+	        {x: 10, y: parseInt(data[45]["COUNT"])},
+	        {x: 11, y: parseInt(data[46]["COUNT"])},
+	        {x: 12, y: parseInt(data[47]["COUNT"])}
+	      ]
+	    },
+	    {
+	      type: "line",
+	      name: data[48]["FACILITYNAME"],
+	      showInLegend: true,
+	      dataPoints: [
+	        {x: 1, y: parseInt(data[48]["COUNT"])},
+	        {x: 2, y: parseInt(data[49]["COUNT"])},
+	        {x: 3, y: parseInt(data[50]["COUNT"])},
+	        {x: 4, y: parseInt(data[51]["COUNT"])},
+	        {x: 5, y: parseInt(data[52]["COUNT"])},
+	        {x: 6, y: parseInt(data[53]["COUNT"])},
+	        {x: 7, y: parseInt(data[54]["COUNT"])},
+	        {x: 8, y: parseInt(data[55]["COUNT"])},
+	        {x: 9, y: parseInt(data[56]["COUNT"])},
+	        {x: 10, y: parseInt(data[57]["COUNT"])},
+	        {x: 11, y: parseInt(data[58]["COUNT"])},
+	        {x: 12, y: parseInt(data[59]["COUNT"])}
+	      ]
+	    }
+	    ]
+	  });
+	  document.getElementById("data-div-3").style.display = "block";
 	  chart.render();
 	  });
 
@@ -192,6 +310,8 @@ function displayIntramurals() {
 	document.getElementById("data-div-2").style.display = "none";
 	document.getElementById("data-div-3").style.display = "none";
 	document.getElementById("data-div-4").style.display = "none";
+	document.getElementById("data-div-5").style.display = "none";
+	document.getElementById("data-div-6").style.display = "none";
 	document.getElementById("dropdown-div-2").style.display = "none";
 	document.getElementById("dropdown-div-3").style.display = "none";
 	document.getElementById("dropdown-div-4").style.display = "none";
@@ -207,10 +327,63 @@ function displayIntramurals() {
               htmlString += "<option value="+sport+">"+sport+"</option>";
 	    }
 	    document.getElementById("dropdown-options").innerHTML = htmlString;
-	    document.getElementById("data-div-1").style.display = "none";
 	    document.getElementById("dropdown-div").style.display = "block";
+	    document.getElementById("data-div-1").style.display = "none";
         });
-  	return true;
+	
+	
+	$.post("./getSportPercentage.php",
+	  function(data){
+	    data = JSON.parse(data);
+	    var htmlString = "<p>Percentage of UF students/faculty playing 1 sport: <b>";
+	    var oneSport = (data[0]["SPORT1PERCENTAGE"] * 100).toFixed(2);
+	    htmlString += oneSport + "%</b></p>";
+	    htmlString += "<p>Percentage of UF students/faculty playing 2 sports: <b>";
+	    var oneSport = (data[0]["SPORT2PERCENTAGE"] * 100).toFixed(2);
+	    htmlString += oneSport + "%</b></p>";
+	    document.getElementById("data-div-5").innerHTML = htmlString;
+	    document.getElementById("data-div-5").style.display = "block";
+        });
+  	
+
+	$.post("./getSportPie.php",
+	  function(data){
+	    data = JSON.parse(data);
+	    var chart = new CanvasJS.Chart("data-div-6",
+	    {
+	      title: {
+	        text: "Distribution of Sports"
+	      },
+	      animationEnabled: true,
+	      legend: {
+	        verticalAlign: "bottom",
+		horizontalAlign: "center"
+	      },
+	      theme: "theme2",
+	      height: 400,
+	      width: 400,
+	      data: [
+	      {
+	        type: "pie",
+		startAngle: 270,
+		toolTipContent: "{name}: {y}",
+		showInLegend: true,
+		dataPoints: [
+		  {y: (data[0]["PERCENTAGE"]*100).toFixed(2), name: data[0]["SPORTTYPE"]},
+		  {y: (data[1]["PERCENTAGE"]*100).toFixed(2), name: data[1]["SPORTTYPE"]},
+		  {y: (data[2]["PERCENTAGE"]*100).toFixed(2), name: data[2]["SPORTTYPE"]},
+		  {y: (data[3]["PERCENTAGE"]*100).toFixed(2), name: data[3]["SPORTTYPE"]},
+		  {y: (data[4]["PERCENTAGE"]*100).toFixed(2), name: data[4]["SPORTTYPE"]},
+		  {y: (data[5]["PERCENTAGE"]*100).toFixed(2), name: data[5]["SPORTTYPE"]}
+		]
+	      }
+	      ]
+	    });
+	    document.getElementById("data-div-6").style.display = "block";
+	    chart.render();
+
+	});
+	return true;
 }
 
 function displayTeams() {
@@ -275,6 +448,8 @@ function displayClasses() {
 	document.getElementById("data-div-2").style.display = "none";
 	document.getElementById("data-div-3").style.display = "none";
 	document.getElementById("data-div-4").style.display = "none";
+	document.getElementById("data-div-5").style.display = "none";
+	document.getElementById("data-div-6").style.display = "none";
 	document.getElementById("dropdown-div").style.display = "none";
 	document.getElementById("dropdown-div-2").style.display = "none";
 	document.getElementById("roster-div").style.display = "none";
@@ -360,15 +535,17 @@ function displayClassRoster(){
 
 
 function displayEquipment() {
-	console.log("Display equipment");
 	document.getElementById("data-div-1").style.display = "block";
 	document.getElementById("data-div-1").innerHTML = "<center><img src='img/loading.gif' width='10%'></center>";
 	document.getElementById("data-div-2").style.display = "none";
 	document.getElementById("data-div-3").style.display = "none";
 	document.getElementById("data-div-4").style.display = "none";
+	document.getElementById("dropdown-div").style.display = "none";
 	document.getElementById("dropdown-div-2").style.display = "none";
 	document.getElementById("dropdown-div-3").style.display = "none";
 	document.getElementById("dropdown-div-4").style.display = "none";
+	document.getElementById("data-div-5").style.display = "none";
+	document.getElementById("data-div-6").style.display = "none";
 	document.getElementById("roster-div").style.display = "none";
 	document.getElementById("record-div").style.display = "none";
 	var htmlString = "<h3>Average checkouts per day: ";

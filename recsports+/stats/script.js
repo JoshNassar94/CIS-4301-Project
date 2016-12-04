@@ -1,9 +1,7 @@
 $(document).ready(function() {
   $.post("../isLoggedIn.php", {id: 0},
     function(data){
-      console.log("Logged in as: "+data);
 		if(data == -1){
-		  console.log("Not logged in");
 		  window.location.href = "http://cise.ufl.edu/~jnassar/recsports+/";
 		}
     });
@@ -88,7 +86,6 @@ function displayFacilities() {
 	$.post("./getHoursData.php",
 	  function(data){
 	    data = JSON.parse(data);
-	    console.log(data);
           var chart = new CanvasJS.Chart("data-div-2",{
 	    animationEnabled: true,
 	    title: {text: "Check-Ins per Hour"},
@@ -170,7 +167,6 @@ function displayStandings() {
 	      var teamName = data[i]["NAME"];
 	      var wins = data[i]["WINS"];
 	      var losses = data[i]["LOSSES"];
-	      console.log(teamName+"    "+myTeam);
 	      if(teamName == myTeam)
 	        htmlString += "<p style='font-weight:bold'>"+teamName+"&nbsp;&nbsp;&nbsp;&nbsp;"+wins+"-"+losses+"</p>";
 	      else
