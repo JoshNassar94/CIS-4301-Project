@@ -1,0 +1,9 @@
+1) Show number of tuples
+2) Log in with student
+3) Talk about favorite classes and recent results
+4) Account Info. Update some piece of info
+5) Go to Stats. Click through and talk about them.
+6) Log into Employee on other computer.
+7) Check in student. Show result on student's page
+8) Repeat with equipment
+9) Go to Facts & Figures, click through, talk about them.
