@@ -15,6 +15,21 @@ $(document).ready(function() {
       htmlString += "<p>IntramuralTeam: "+data[0]["INTRAMURALTEAMCOUNT"]+"</p>";
       htmlString += "<p>Person: "+data[0]["PERSONCOUNT"]+"</p>";
       htmlString += "<p>UfAffiliate: "+data[0]["UFAFFILIATECOUNT"]+"</p>";
+	  
+	  var total = parseInt(data[0]["ACTIVITYCOUNT"]) 
+				  + parseInt(data[0]["CHECKINCOUNT"])
+				  + parseInt(data[0]["CLASSCOUNT"]) 
+				  + parseInt(data[0]["CLASSROSTERCOUNT"]) 
+				  + parseInt(data[0]["EQUIPMENTCOUNT"])
+				  + parseInt(data[0]["GUESTCOUNT"]) 
+				  + parseInt(data[0]["FACILITYCOUNT"]) 
+				  + parseInt(data[0]["EQUIPMENTTRANSACTIONCOUNT"])
+				  + parseInt(data[0]["PERSONCOUNT"]) 
+				  + parseInt(data[0]["INTRAMURALTEAMCOUNT"]) 
+				  + parseInt(data[0]["INTRAMURALGAMECOUNT"])
+				  + parseInt(data[0]["UFAFFILIATECOUNT"]);
+	  
+	  htmlString += "<p><b>Total: " + total + "</b></p>";
       document.getElementById("data").innerHTML = htmlString;
     });
 });
